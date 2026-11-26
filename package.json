@@ -1,0 +1,24 @@
+{
+  "name": "sce-factory-testing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@effect/platform-node": "4.1.6",
+    "effect": "4.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.4",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  }
+}
