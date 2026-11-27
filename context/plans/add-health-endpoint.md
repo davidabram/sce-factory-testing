@@ -40,13 +40,18 @@ existing behavior: the `GET /hello` endpoint stays unchanged.
 
 ## Task stack
 
-- [ ] T01: `Add a health endpoint` (status:todo)
+- [x] T01: `Add a health endpoint` (status:done)
   - Task ID: T01
   - Scope: In — `GET /health` route in `src/server.ts`, a test for `/health` in `test/`. Out — changes to `/hello`, new dependencies, middleware.
   - Dependencies: none
   - Done when: `GET /health` returns HTTP 200 with plain-text body `ok`; `GET /hello` still returns `Hello, World!`; a test covers `/health`; `npm run typecheck` and `npm test` pass.
   - Verify: `npm run typecheck`; `npm test`.
-  - Context synchronization: pending
+  - Completed: 2026-11-27
+  - Files changed: `src/server.ts`, `test/health.test.ts`
+  - Result: `Routes` now merges the `/hello` route with a new `GET /health` route returning plain-text `ok`. `test/health.test.ts` covers `GET /health` (200, `text/plain`, `ok`) and `POST /health` (404).
+  - Verify: `npm run typecheck` passed; `npm test` passed (3 tests: `/health`, `POST /health`, existing `/hello`).
+  - Context impact: minor — `README.md` endpoint table needs a `GET /health` row.
+  - Context synchronization: synced
 
 ## Open questions
 

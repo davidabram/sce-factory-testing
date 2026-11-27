@@ -10,19 +10,27 @@ The server's routes live in one exported value, `Routes`, in
 | Method | Path     | Status | Content type | Body            |
 | ------ | -------- | ------ | ------------ | --------------- |
 | GET    | `/hello` | `200`  | `text/plain` | `Hello, World!` |
+| GET    | `/health` | `200` | `text/plain` | `ok`            |
 
-`/hello` is the only route. Requests to any other method or path fall through to
-the router's default not-found handling; the repository defines no custom
-fallback, middleware, or error handler.
+`/health` is a liveness signal only. It does not check readiness or
+dependencies, and it returns no JSON payload.
+
+Requests to any other method or path fall through to the router's default
+not-found handling. For example, `POST /health` returns `404`. The repository
+defines no custom fallback, middleware, or error handler.
 
 ## Adding a route
 
 A new route extends the same `Routes` value so that both the running server and
-the in-process tests pick it up. `HttpServerResponse.text(...)` produces a
+the in-process tests pick it up. `Routes` merges one `HttpRouter.add` layer per
+route with `Layer.mergeAll`. `HttpServerResponse.text(...)` produces a
 `text/plain` response with status `200`:
 
 ```ts
-export const Routes = HttpRouter.add("GET", "/hello", HttpServerResponse.text("Hello, World!"))
+export const Routes = Layer.mergeAll(
+  HttpRouter.add("GET", "/hello", HttpServerResponse.text("Hello, World!")),
+  HttpRouter.add("GET", "/health", HttpServerResponse.text("ok"))
+)
 ```
 
 `Routes` is a router layer, not a running server. Serving it is covered in
