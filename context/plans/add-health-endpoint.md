@@ -8,9 +8,9 @@ existing behavior: the `GET /hello` endpoint stays unchanged.
 
 ## Acceptance criteria
 
-- [ ] AC1: `GET /health` returns HTTP 200 with `Content-Type: text/plain` and the body `ok`.
+- [x] AC1: `GET /health` returns HTTP 200 with `Content-Type: text/plain` and the body `ok`.
   - Validate: `npm test` passes a test for `/health`; `curl -s -w ' %{http_code}' http://localhost:3000/health` prints `ok 200` while `npm start` runs.
-- [ ] AC2: `GET /hello` still returns HTTP 200 with the body `Hello, World!`.
+- [x] AC2: `GET /hello` still returns HTTP 200 with the body `Hello, World!`.
   - Validate: `npm test` passes the existing `/hello` test; `curl -s -w ' %{http_code}' http://localhost:3000/hello` prints `Hello, World! 200` while `npm start` runs.
 
 ### Full validation
@@ -56,3 +56,28 @@ existing behavior: the `GET /hello` endpoint stays unchanged.
 ## Open questions
 
 None. The request fully specifies the endpoint, its response, and its checks.
+
+## Validation Report
+
+**Status:** validated  
+**Date:** 2026-11-27
+
+### Commands run
+
+- `nix develop --command npm run typecheck` -> exit 0 (tsc --noEmit clean)
+- `nix develop --command npm test` -> exit 0 (3 tests passed, 0 failed)
+- `npm start` + `curl -s -w ' %{http_code}' http://localhost:3000/health` -> `ok 200`
+- `npm start` + `curl -s -w ' %{http_code}' http://localhost:3000/hello` -> `Hello, World! 200`
+
+### Success-criteria verification
+
+- [x] AC1: `GET /health` returns 200, `text/plain`, body `ok` -> test passed; curl printed `ok 200`; headers showed `content-type: text/plain`
+- [x] AC2: `GET /hello` still returns 200 `Hello, World!` -> existing test passed; curl printed `Hello, World! 200`
+
+### Failed checks and follow-ups
+
+- None.
+
+### Residual risks
+
+- None identified.
