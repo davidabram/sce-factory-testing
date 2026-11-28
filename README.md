@@ -10,9 +10,10 @@ factory to execute.
 
 ## Endpoints
 
-| Method | Path     | Response                              |
-| ------ | -------- | ------------------------------------- |
-| GET    | `/hello` | `200`, `text/plain`, `Hello, World!`  |
+| Method | Path      | Response                              |
+| ------ | --------- | ------------------------------------- |
+| GET    | `/hello`  | `200`, `text/plain`, `Hello, World!`  |
+| GET    | `/health` | `200`, `text/plain`, `ok`             |
 
 The server listens on port `3000`, or on the port in the `PORT` environment
 variable.
