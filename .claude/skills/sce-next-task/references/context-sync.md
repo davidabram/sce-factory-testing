@@ -206,6 +206,9 @@ without invoking it and record that outcome in synchronization evidence.
 
 Make the smallest coherent documentation change that preserves repository truth.
 
+Read `references/controlled-english.md` before editing context, and apply it to
+new or modified prose.
+
 When editing context:
 
 - Describe the resulting behavior, not the implementation session.
