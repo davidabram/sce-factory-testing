@@ -32,6 +32,9 @@ Read its `Acceptance criteria rules`, `Task rules` and `No validation task` rule
 and `Updating an existing plan` rules before authoring or revising. Apply those
 rules rather than restating them here.
 
+Read `references/controlled-english.md` before authoring or revising, and apply
+it to new or revised plan prose.
+
 The workflow renders this phase's result as the summary defined in
 `references/output.md`.
 

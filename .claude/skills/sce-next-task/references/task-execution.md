@@ -108,6 +108,9 @@ Do not broaden the reviewed task.
 
 ## 2.5 Implement one task
 
+When the task writes or modifies tests, read `references/test-design.md` before
+making changes, and apply it.
+
 Make the minimum coherent changes required to satisfy the task goal and done
 checks.
 
